@@ -17,11 +17,9 @@ public class ArrayUtility<T> {
     public Integer countDuplicatesInMerge(T[] arrayToMerge, T valueToEvaluate) {
         T[] temp = mergeArray(arrayToMerge);
         int count =0;
-        for(int i = 0; i < temp.length; i++){
-            for(int j =0; j <temp.length; j++){
-                if(temp[i].equals(valueToEvaluate) && temp[j].equals(valueToEvaluate)){
-                    count++;
-                }
+        for (T value : temp) {
+            if (value.equals(valueToEvaluate)) {
+                count++;
             }
         }
         return count;
@@ -32,16 +30,30 @@ public class ArrayUtility<T> {
     }
 
     public Integer getNumberOfOccurrences(T valueToEvaluate) {
-        return null;
+        int count =0;
+        for (T value : t) {
+            if (value.equals(valueToEvaluate)) {
+                count++;
+            }
+        }
+        return count;
     }
 
     public T[] removeValue(T valueToRemove) {
-        return null;
+        int numOfRemove = getNumberOfOccurrences(valueToRemove);
+        T[] temp = Arrays.copyOf(t, t.length - numOfRemove);
+        for(int i = 0, k = 0; i < t.length; i++){
+            if(t[i] != valueToRemove){
+                temp[k] = t[i];
+                k++;
+            }
+        }
+        return temp;
     }
 
     public T[] mergeArray(T[] arrayToMerge){
-        T[] newArr = Arrays.copyOf(t, t.length-1+arrayToMerge.length-1);
-        System.arraycopy(arrayToMerge, 0, t, t.length-1, arrayToMerge.length-1);
+        T[] newArr = Arrays.copyOf(t, t.length+arrayToMerge.length);
+        System.arraycopy(arrayToMerge, 0, newArr, t.length, arrayToMerge.length);
         return newArr;
     }
 }
