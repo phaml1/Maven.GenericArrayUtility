@@ -26,7 +26,22 @@ public class ArrayUtility<T> {
     }
 
     public T getMostCommonFromMerge(T[] arrayToMerge) {
-        return null;
+        T temp = t[0];
+        T[] tempArr = mergeArray(arrayToMerge);
+        int common = 0;
+        for (T o : tempArr) {
+            int count = 0;
+            for (T object : tempArr) {
+                if (o == object) {
+                    count = getNumberOfOccurrences(o);
+                    break;
+                }
+            }
+            if (count > common) {
+                temp = o;
+            }
+        }
+        return temp;
     }
 
     public Integer getNumberOfOccurrences(T valueToEvaluate) {
